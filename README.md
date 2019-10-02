@@ -4,12 +4,12 @@
 Let's use our front-end web development skills to create a "living" pet! We'll use HTML, CSS, and JavaScript/jQuery to interact with our pet.
 
 #Requirements
-Create a repo for your tomagotchi pet [check]
-make a commit after you finish each one of the following []
-Create a Class (JS Class, look at your notes if your forget) for your tomagotchi
-Instatiate your Tomagotchi
-Display a character of your choice on the screen to represent your pet
-Display the following metrics for your pet:
+Create a repo for your tomagotchi pet   														[check]
+make a commit after you finish each one of the following 
+Create a Class (JS Class, look at your notes if your forget) for your tomagotchi 				[check]
+Instatiate your tomagotchi 																		[check]
+Display a character of your choice on the screen to represent your pet                          []
+Display the following metrics for your pet:														[InProgress]
 Hunger (1-10 scale)
 Sleepiness (1-10 scale)
 Boredom (1-10 scale)

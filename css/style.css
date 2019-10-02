@@ -1,3 +1,13 @@
+header {
+	display: flex;
+	align-items: center;
+}
+
+
 body {
-	background-color: tomato;
+	background-color: rgb(95, 158, 160);
+}
+
+.tomaHome {
+	width: 50%;
 }
