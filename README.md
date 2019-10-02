@@ -9,13 +9,13 @@ make a commit after you finish each one of the following
 Create a Class (JS Class, look at your notes if your forget) for your tomagotchi 				[check]
 Instatiate your tomagotchi 																		[check]
 Display a character of your choice on the screen to represent your pet                          []
-Display the following metrics for your pet:														[InProgress]
+Display the following metrics for your pet:														[check]
 Hunger (1-10 scale)
 Sleepiness (1-10 scale)
 Boredom (1-10 scale)
 Age
 Add buttons to the screen to feed your pet, turn off the lights, and play with your pet.
-Add the ability to name your pet.
+Add the ability to name your pet.																[check]
 Style the page.
 Increase your pet's age every x minutes
 Increase your pet's Hunger, Sleepiness, and Bored metrics on an interval of your choosing.

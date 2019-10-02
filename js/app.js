@@ -16,36 +16,63 @@ class Tomagotchi {
 //	sleep()
 };
 
-// listeners
-$('form').on('submit', (e) => {
-  event.preventDefault();
-  console.log('button works')
-  const tomaName = $('#input-box').val();
-  game.spawnTomagotchi(tomaName);
-});
+
 
 // game logic
 const game = {
 
 	time: 10,
 
-	spawnTomagotchi:function(name) {
-		const tomagotchiBorn = new Tomagotchi(name);
+	tomagotchiBorn: {},
+
+
+	spawnTomagotchi: function(name) {
+		$(`form`).hide();
+		this.tomagotchiBorn = new Tomagotchi(name);
+		
+		$(`.tomaHome`).append(this.tomagotchiBorn);
+		
+		console.log(this.tomagotchiBorn);
+		
+		this.tomagotchiStats();
+
+	},
+
+	tomagotchiStats: function() {
 		let tomaStats = '';
-		$(`.tomaHome`).append(tomagotchiBorn);
+		tomaStats = $(`<div class="stats"><h2>${this.tomagotchiBorn.name}'s age is: ${this.tomagotchiBorn.age}</h2></div> \n` + `<div class="stats"><h2>${this.tomagotchiBorn.name} hunger is: ${this.tomagotchiBorn.hunger}</h2></div> \n` +  `<div class="stats"><h2>${this.tomagotchiBorn.name} sleepiness is: ${this.tomagotchiBorn.hunger}</h2></div> \n` + `<div class="stats"><h2>${this.tomagotchiBorn.name} boredom is: ${this.tomagotchiBorn.boredom}</h2></div> \n`)
 		
-		console.log(tomagotchiBorn);
-		
-
-
-		tomaStats = $(`<div class="stats"><h2>${tomagotchiBorn.name}'s age is: ${tomagotchiBorn.age}</h2></div> \n` + `<div class="stats"><h2>${tomagotchiBorn.name} hunger is: ${tomagotchiBorn.hunger}</h2></div> \n` +  `<div class="stats"><h2>${tomagotchiBorn.name} sleepiness is: ${tomagotchiBorn.hunger}</h2></div> \n` + `<div class="stats"><h2>${tomagotchiBorn.name} boredom is: ${tomagotchiBorn.boredom}</h2></div> \n` )
 		$('.tomaHome').append(tomaStats);
-		$('.tomaHome').append(`<h2>The Current time is: ${this.time}</h2>`)
-	 	
 
-		//console.log(tomagotchiBorn);
+			this.incrementTime();
+	},
+
+	incrementTime: function() {
+		const interval = setInterval(() => {
+		 	if (this.time === 20) {
+		 		clearinterval(interval);
+		 	} else {
+		 		// make him tireder etc
+
+
+
+
+		 		this.time++;
+		 	}
+		 	$('.time').html( `<div class="time"><h2>The time is: ${this.time}</h2></div>`)
+		}, 1000);
+		 
 	}
 }
 
+// listeners
+$('form').on('submit', (e) => {
+  event.preventDefault();
+  console.log('button works')
+  
+  const tomaName = $('#input-box').val();
 
+  game.spawnTomagotchi(tomaName);
+  
+});
 
