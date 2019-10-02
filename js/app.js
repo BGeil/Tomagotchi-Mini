@@ -1,16 +1,12 @@
-console.log("test");
-
-
-
 
 // class
 class Tomagotchi {
 	constructor(name){
 		this.name = name;
 		this.age = 0;
-		this.hunger = (Math.floor(Math.random() * 10) + 1);
-		this.sleepiness = (Math.floor(Math.random() * 10) + 1);
-		this.boredom = (Math.floor(Math.random() * 10) + 1);
+		this.hunger = (Math.floor(Math.random() * 9) + 1);
+		this.sleepiness = (Math.floor(Math.random() * 9) + 1);
+		this.boredom = (Math.floor(Math.random() * 9) + 1);
 	}
 //	die()
 //	sleep()
@@ -23,7 +19,7 @@ const game = {
 
 	time: 0,
 
-	tomagotchiBorn: {},
+	tomagotchiBorn: null,
 
 
 	spawnTomagotchi: function(name) {
@@ -35,59 +31,53 @@ const game = {
 
 		this.tomagotchiStats();
 
+		this.incrementTime()
+
 	},
 
 	tomagotchiStats: function() {
 		 
-		 $('#name').append(`${this.tomagotchiBorn.name} \n`);
-		 $('#age').append(`${this.tomagotchiBorn.age} \n`);
-		 $('#hunger').append(`${this.tomagotchiBorn.hunger} \n`);
-		 $('#sleepiness').append(`${this.tomagotchiBorn.sleepiness} \n`);
-		 $('#boredom').append(`${this.tomagotchiBorn.boredom} \n`);
-
-	     this.incrementTime();
+		$('#name').text(this.tomagotchiBorn.name);
+		$('#age').text(this.tomagotchiBorn.age);
+		$('#hunger').text(`${this.tomagotchiBorn.hunger} \n`);
+		$('#sleepiness').text(`${this.tomagotchiBorn.sleepiness} \n`);
+		$('#boredom').text(`${this.tomagotchiBorn.boredom} \n`);
+		 
 	},
 
 	incrementTime: function() {
-
+		
 		const interval = setInterval(() => {
-			this.time++;
-		 	if (this.time % 2 === 0) {
- 
-		 		// clearinterval(interval);
-		 	 this.tomagotchiBorn.age += 1;
-
+		 	this.time++;
+		 	$('#time').text(this.time);
+		 	console.log("we are in the interval");
+		 	console.log(this.time);
+			
+		 	if (this.time % 60 === 0) {
+				this.tomagotchiBorn.age += 1;
+				this.tomagotchiStats();
+		 	}else if(this.time % 25 === 0) {
+		 		this.tomagotchiBorn.hunger += 1;
 		 		this.tomagotchiStats();
-		 	} else if(this.time % 2 === 1) {
-		 		
- 
-
-		 		console.log('this is working?');
-
-		 	}
-		 	$('.time').html( `<div class="time"><h2>The time is: ${this.time}</h2></div>`)
-		}, 1000);
-		 
+		 	}else if(this.time % 20 === 0) {
+		 		this.tomagotchiBorn.sleepiness += 1;
+		 		this.tomagotchiStats();
+		 	}else if(this.time % 15 === 0) {
+		 		this.tomagotchiBorn.boredom += 1;
+		 		this.tomagotchiStats();
+		 	} 
+		}, 1000);	 
 	}
  }
 
 // listeners
 $('form').on('submit', (e) => {
   event.preventDefault();
-  console.log('button works')
-  
   const tomaName = $('#input-box').val();
-
-  game.spawnTomagotchi(tomaName);
-  
+  game.spawnTomagotchi(tomaName); 
 });
 
 
-// let tomaStats = '';
-// 		tomaStats = $(`<div class="stats"><h2>${this.tomagotchiBorn.name}'s age is: ${this.tomagotchiBorn.age}</h2></div> \n` + `<div class="stats"><h2>${this.tomagotchiBorn.name} hunger is: ${this.tomagotchiBorn.hunger}</h2></div> \n` +  `<div class="stats"><h2>${this.tomagotchiBorn.name} sleepiness is: ${this.tomagotchiBorn.hunger}</h2></div> \n` + `<div class="stats"><h2>${this.tomagotchiBorn.name} boredom is: ${this.tomagotchiBorn.boredom}</h2></div> \n`)
-// 		$('.tomaHome').append(tomaStats);
-
-// 			this.incrementTime();
 
 
 
