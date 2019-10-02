@@ -18,8 +18,8 @@ Add buttons to the screen to feed your pet, turn off the lights, and play with y
 Add the ability to name your pet.																[check]
 Style the page.
 Increase your pet's age every x minutes															[check]
-Increase your pet's Hunger, Sleepiness, and Bored metrics on an interval of your choosing.		
-You pet should die if Hunger, Boredom, or Sleepiness hits 10.
+Increase your pet's Hunger, Sleepiness, and Bored metrics on an interval of your choosing.		[check]
+You pet should die if Hunger, Boredom, or Sleepiness hits 10.									[In Progress]
 Morph your pet at certain ages.
 Animate your pet across the screen while it's alive.
 

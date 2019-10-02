@@ -7,9 +7,8 @@ class Tomagotchi {
 		this.hunger = (Math.floor(Math.random() * 9) + 1);
 		this.sleepiness = (Math.floor(Math.random() * 9) + 1);
 		this.boredom = (Math.floor(Math.random() * 9) + 1);
+		this.alive = true;
 	}
-//	die()
-//	sleep()
 };
 
 
@@ -24,14 +23,14 @@ const game = {
 
 	spawnTomagotchi: function(name) {
 		$(`form`).hide();
-		
+		$('.stats').show();
 		this.tomagotchiBorn = new Tomagotchi(name);
 		$(`.tomaHome`).append(this.tomagotchiBorn);
 		console.log(this.tomagotchiBorn);
 
 		this.tomagotchiStats();
 
-		this.incrementTime()
+		this.incrementTime();
 
 	},
 
@@ -48,8 +47,9 @@ const game = {
 	incrementTime: function() {
 		
 		const interval = setInterval(() => {
-		 	this.time++;
+		 	
 		 	$('#time').text(this.time);
+		 	
 		 	console.log("we are in the interval");
 		 	console.log(this.time);
 			
@@ -66,7 +66,21 @@ const game = {
 		 		this.tomagotchiBorn.boredom += 1;
 		 		this.tomagotchiStats();
 		 	} 
-		}, 1000);	 
+
+		 	if(this.tomagotchiBorn.hunger >= 10) {
+		 		this.isItDead();
+		 	}else if(this.tomagotchiBorn.sleepiness >= 10) {
+		 		this.isItDead();
+		 	}else if(this.tomagotchiBorn.boredom >= 10) {
+		 		this.isItDead();
+		 	}
+		 	this.time++;
+		}, 1000);
+		 
+	},
+	isItDead: function() {
+			alert("Your Tomagotchi has died!");
+			this.tomagotchiBorn.alive = false;
 	}
  }
 
@@ -75,6 +89,7 @@ $('form').on('submit', (e) => {
   event.preventDefault();
   const tomaName = $('#input-box').val();
   game.spawnTomagotchi(tomaName); 
+ 
 });
 
 
