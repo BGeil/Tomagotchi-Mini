@@ -1,6 +1,5 @@
 header {
-	display: flex;
-	align-items: center;
+	
 }
 
 
@@ -10,4 +9,9 @@ body {
 
 .tomaHome {
 	width: 50%;
+}
+
+.stats {
+	display: flex;
+	align-items: flex-end;
 }
