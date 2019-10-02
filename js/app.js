@@ -38,7 +38,7 @@ const game = {
 		
 
 
-		tomaStats = $(`<div class="stats"><h2>Your Tomagotchi's hunger is: ${tomagotchiBorn.hunger}</h2></div> \n` +  `<div class="stats"><h2>Your Tomagotchi's sleepiness is: ${tomagotchiBorn.hunger}</h2></div> \n` + `<div class="stats"><h2>Your Tomagotchi's hunger is: ${tomagotchiBorn.boredom}</h2></div> \n` )
+		tomaStats = $(`<div class="stats"><h2>${tomagotchiBorn.name}'s age is: ${tomagotchiBorn.age}</h2></div> \n` + `<div class="stats"><h2>${tomagotchiBorn.name} hunger is: ${tomagotchiBorn.hunger}</h2></div> \n` +  `<div class="stats"><h2>${tomagotchiBorn.name} sleepiness is: ${tomagotchiBorn.hunger}</h2></div> \n` + `<div class="stats"><h2>${tomagotchiBorn.name} boredom is: ${tomagotchiBorn.boredom}</h2></div> \n` )
 		$('.tomaHome').append(tomaStats);
 		$('.tomaHome').append(`<h2>The Current time is: ${this.time}</h2>`)
 	 	
