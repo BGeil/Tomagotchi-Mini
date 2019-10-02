@@ -5,8 +5,8 @@ console.log("test");
 
 // class
 class Tomagotchi {
-	constructor(){
-		this.name = '';
+	constructor(name){
+		this.name = name;
 		this.age = 0;
 		this.hunger = (Math.floor(Math.random() * 10) + 1);
 		this.sleepiness = (Math.floor(Math.random() * 10) + 1);
@@ -17,11 +17,11 @@ class Tomagotchi {
 };
 
 // listeners
-$('.startGame').on('click', () => {
+$('form').on('submit', (e) => {
+  event.preventDefault();
   console.log('button works')
- 
-  game.spawnTomagotchi();
-  
+  const tomaName = $('#input-box').val();
+  game.spawnTomagotchi(tomaName);
 });
 
 // game logic
@@ -29,14 +29,11 @@ const game = {
 
 	time: 10,
 
-	spawnTomagotchi:function() {
-		const tomagotchiBorn = new Tomagotchi();
+	spawnTomagotchi:function(name) {
+		const tomagotchiBorn = new Tomagotchi(name);
 		let tomaStats = '';
-		
 		$(`.tomaHome`).append(tomagotchiBorn);
-		const tomaName = prompt("What is the name of your Tomagotchi?")
-		tomagotchiBorn.name.push(tomaName);
-		console.log(typeof tomaName);
+		
 		console.log(tomagotchiBorn);
 		
 
@@ -46,7 +43,7 @@ const game = {
 		$('.tomaHome').append(`<h2>The Current time is: ${this.time}</h2>`)
 	 	
 
-		console.log(tomagotchiBorn);
+		//console.log(tomagotchiBorn);
 	}
 }
 
