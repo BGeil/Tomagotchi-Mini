@@ -1,3 +1,7 @@
+html {
+	font-size: 100%;
+}
+
 
 body {
 	font-family: 'Roboto', sans-serif;
@@ -14,10 +18,6 @@ main {
 	padding:0 1rem;
 }
 
-.tomahome {
-	text-align: center;
-}
-
 form {
 	text-align: center;
 	padding: 1rem;
@@ -30,16 +30,58 @@ form {
 	max-height: 640px;
 	margin: 0 auto;
 	display: block;
-	padding-top: 2rem;
+	/*padding-top: 2rem;*/
+	border: 20px solid #9ff435;
 }
 
 .stats {
 	display: none;
+	padding: 2rem;
+}
+
+.stats h4 {
+	font-size: 1rem;
+	color: #9ff435;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .deadOrAlive {
 	display: none;
 }
+
+.deadOrAlive h2 {
+	font-size: 3rem;
+	color: #9ff435;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.button-wrapper {
+	padding: 1rem 2rem 1rem 2rem;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-wrapper button {
+    background-color: #9ff435;
+    border: 0;
+    padding: 1.5rem 2rem 1.5rem 2rem;
+    border-radius: 40px;
+    color: #000000;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer
+    transition: .2s ease;
+}
+
+.button-wrapper button:hover {
+	background-color: #ffffff;
+	transition: .2s ease;
+	cursor: pointer
+}
+
 .feed {
 	display: none;
 }
@@ -52,6 +94,67 @@ form {
 	display: none;
 }
 
+@keyframes move {
+
+  0%   {
+  	border: 12px solid #9ff435;
+  }
+
+  25%  {
+  	border: 6px solid #000;
+  }
+
+  50%  {
+  	border: 12px solid #9ff435;
+  }
+
+  75%  {
+  	border: 6px solid #000;
+  }
+
+  100% {
+  	border: 12px solid #9ff435;
+  }
+
+}
+
+@keyframes dead {
+
+  0%   {
+  	border: 15px solid #CE2029;
+  }
+
+  25%  {
+  	border: 15px solid #000;
+  }
+
+  50%  {
+  	border: 15px solid #CE2029;
+  }
+
+  75%  {
+  	border: 15px solid #000;
+  }
+
+  100% {
+  	border: 15px solid #CE2029;
+  }
+
+}
+
+.shodan-dead {
+	animation-name: dead;
+	animation-duration: .7s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;	
+}
+
+.animate {
+	animation-name: move;
+	animation-duration: 6s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease;
+}
 
 
 

@@ -12,12 +12,18 @@
 	<header>	
 	</header>
 	<main>		
-		<div class="tomaHome">	
-			<img class="shodan"src="babyshodan.gif">
-			<form>
-			    <input type="text" placeholder="Name Your Tomagotchi" id="input-box"/>
-			    <input type="submit" class="startGame"></input>
-			</form>
+		<div class="tomaHome" style="margin-top: 50px;">
+			<div class="wrap">
+				<div class="inner-wrap">
+					<img class="shodan animate" src="babyshodan.gif" alt="shodan">
+					<form>
+					    <input type="text" placeholder="Name Your Tomagotchi" id="input-box"/>
+					    <input type="submit" class="startGame"></input>
+					</form>
+				</div>
+			</div>
+
+			
 			<div class="stats">
 				<h4>The Tomagotchi's name is: <span id="name"></span></h4>
 				<h4>The age is: <span id="age"></span></h4>
@@ -29,17 +35,17 @@
 			<div class="deadOrAlive">
 				<h2>You have murdered your Tomagotchi! Don't have children...</h2>
 			</div>
-			<div >
+			<div class="button-wrapper">
 				<button class="feed">
 					Feed Your Tomagotchi
 				</button>
-			</div>
-			<div >
+			<!-- </div>
+			<div > -->
 				<button class="sleepTime">
 					Turn Off Lights
 				</button>
-			</div>
-			<div>
+		<!-- 	</div>
+			<div> -->
 				<button class="playTime">
 					Play With Tomagotchi
 				</button>

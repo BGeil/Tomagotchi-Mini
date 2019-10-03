@@ -1,4 +1,4 @@
-let fastMode = true
+let fastMode = false
 // class
 class Tomagotchi {
 	constructor(name){
@@ -93,12 +93,15 @@ const game = {
 		$('.deadOrAlive').show();
 		// PUT A BIG RED X
 		this.tomagotchiBorn.alive = false;
+		if (this.tomagotchiBorn.alive === false) {
+			$('.shodan').removeClass(`animate`).addClass('shodan-dead');
+		}
 		clearInterval(this.interval);
 
 	},
 	itsMorphingTime: function() {
 		if(this.tomagotchiBorn.age === 1) {
-			$('.shodan').replaceWith(`<img class="shodan" src="adultshodan.gif">`)
+			$('.shodan').attr('src', "adultshodan.gif")
 		}
 	}
 

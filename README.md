@@ -21,7 +21,7 @@ Increase your pet's age every x minutes															[check]
 Increase your pet's Hunger, Sleepiness, and Bored metrics on an interval of your choosing.		[check]
 You pet should die if Hunger, Boredom, or Sleepiness hits 10.									[check]
 Morph your pet at certain ages.																	[check]
-Animate your pet across the screen while it's alive.											[]
+Animate your pet across the screen while it's alive.											[check]
 
 
 #Extras
