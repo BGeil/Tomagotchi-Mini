@@ -1,4 +1,4 @@
-let fastMode = true
+let fastMode = false
 // class
 class Tomagotchi {
     constructor(name) {
@@ -65,11 +65,7 @@ const game = {
             if (this.time % 25 === 0) {
                 this.tomagotchiBorn.hunger += 1;
             }
-
-
-
-
-            if (this.time % 2 === 0) {
+            if (this.time % 20 === 0) {
                 if (this.isLightsOn === true) {
                     this.tomagotchiBorn.sleepiness += 1;
                 } else {
@@ -78,26 +74,20 @@ const game = {
                         this.tomagotchiBorn.sleepiness += 1;
                     }
                 }
-
-
-
             }
             if (this.time % 15 === 0) {
                 this.tomagotchiBorn.boredom += 1;
             }
             this.tomagotchiStats();
-
             if (
                 this.tomagotchiBorn.hunger >= 10 ||
                 this.tomagotchiBorn.sleepiness >= 10 ||
                 this.tomagotchiBorn.boredom >= 10
             ) {
-
                 this.isItDead();
             }
-
             this.time++;
-        }, fastMode ? 300 : 1000); // for testing purposes
+        }, fastMode ? 200 : 1000); // for testing purposes
 
     },
 
@@ -151,7 +141,7 @@ const game = {
 
 
     lightsOn: function() {
-        // change liughts boole to make them on
+        // change liughts boolean to make them on
         this.isLightsOn = true;
         $('.timeToWakeUp').hide();
         $('.sleepTime').show();
