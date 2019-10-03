@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Tomagotchi</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
+
 </head>
 <body>
-	<header>
-		
+	<header>	
 	</header>
-	<main>
-		
-		
-		<div class="tomaHome">
-			<img src="SHODAN_1.jpg">
+	<main>		
+		<div class="tomaHome">	
+			<img class="shodan"src="babyshodan.gif">
 			<form>
 			    <input type="text" placeholder="Name Your Tomagotchi" id="input-box"/>
 			    <input type="submit" class="startGame"></input>
@@ -26,13 +26,29 @@
 				<h4>Boredom level: <span id="boredom"></span></h4>
 				<h4>The current time: <span id="time"></span></h4>
 			</div>
-			
+			<div class="deadOrAlive">
+				<h2>You have murdered your Tomagotchi! Don't have children...</h2>
+			</div>
+			<div >
+				<button class="feed">
+					Feed Your Tomagotchi
+				</button>
+			</div>
+			<div >
+				<button class="sleepTime">
+					Turn Off Lights
+				</button>
+			</div>
+			<div>
+				<button class="playTime">
+					Play With Tomagotchi
+				</button>
+			</div>
 		</div>
 		
 	</main>
-	<footer>
-		
-	</footer>
-<script type="text/javascript" src="js/app.js"></script>
+	<footer>	
+	</footer>	
+	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

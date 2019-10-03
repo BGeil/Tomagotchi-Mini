@@ -1,4 +1,4 @@
-
+let fastMode = true
 // class
 class Tomagotchi {
 	constructor(name){
@@ -16,14 +16,19 @@ class Tomagotchi {
 // game logic
 const game = {
 
-	time: 0,
+	time: 1,
 
 	tomagotchiBorn: null,
+
+	interval: null,
 
 
 	spawnTomagotchi: function(name) {
 		$(`form`).hide();
 		$('.stats').show();
+		$('.feed').show();
+		$('.sleepTime').show();
+		$('.playTime').show();
 		this.tomagotchiBorn = new Tomagotchi(name);
 		$(`.tomaHome`).append(this.tomagotchiBorn);
 		console.log(this.tomagotchiBorn);
@@ -46,7 +51,7 @@ const game = {
 
 	incrementTime: function() {
 		
-		const interval = setInterval(() => {
+		 this.interval = setInterval(() => {
 		 	
 		 	$('#time').text(this.time);
 		 	
@@ -56,6 +61,7 @@ const game = {
 		 	if (this.time % 60 === 0) {
 				this.tomagotchiBorn.age += 1;
 				this.tomagotchiStats();
+				this.itsMorphingTime();
 		 	}else if(this.time % 25 === 0) {
 		 		this.tomagotchiBorn.hunger += 1;
 		 		this.tomagotchiStats();
@@ -75,15 +81,31 @@ const game = {
 		 		this.isItDead();
 		 	}
 		 	this.time++;
-		}, 1000);
+		}, fastMode ? 100 : 1000); // for testing purposes
 		 
 	},
-	isItDead: function() {
-			alert("Your Tomagotchi has died!");
-			this.tomagotchiBorn.alive = false;
-	}
- }
 
+	isItDead: function() {
+		$('.stats').hide();
+		$('.feed').hide();
+		$('.sleepTime').hide();
+		$('.playTime').hide();
+		$('.deadOrAlive').show();
+		// PUT A BIG RED X
+		this.tomagotchiBorn.alive = false;
+		clearInterval(this.interval);
+
+	},
+	itsMorphingTime: function() {
+		if(this.tomagotchiBorn.age === 1) {
+			$('.shodan').replaceWith(`<img class="shodan" src="adultshodan.gif">`)
+		}
+	}
+
+
+
+	
+ }
 // listeners
 $('form').on('submit', (e) => {
   event.preventDefault();
@@ -92,10 +114,30 @@ $('form').on('submit', (e) => {
  
 });
 
-
-
-
-
+// feed button
+$('.feed').on('click', () => {
+		game.tomagotchiBorn.hunger -= 1;
+		game.tomagotchiStats();
+		if (game.tomagotchiBorn.hunger <= 0) {
+			game.tomagotchiBorn.hunger += 1;
+		}
+	});
+// turn off lights
+$('.sleepTime').on('click', () => {
+		game.tomagotchiBorn.sleepiness -= 1;
+		game.tomagotchiStats();
+		if (game.tomagotchiBorn.sleepiness <= 0) {
+			game.tomagotchiBorn.sleepiness += 1;
+		}
+	});
+// play with tomagotchi
+$('.playTime').on('click', () => {
+		game.tomagotchiBorn.boredom -= 1;
+		game.tomagotchiStats();
+		if (game.tomagotchiBorn.boredom <= 0) {
+			game.tomagotchiBorn.boredom += 1;
+		}
+	});
 
 
 
