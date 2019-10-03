@@ -1,4 +1,4 @@
-let fastMode = false
+let fastMode = true
 // class
 class Tomagotchi {
     constructor(name) {
@@ -87,7 +87,7 @@ const game = {
                 this.isItDead();
             }
             this.time++;
-        }, fastMode ? 200 : 1000); // for testing purposes
+        }, fastMode ? 500 : 1000); // for testing purposes
 
     },
 
