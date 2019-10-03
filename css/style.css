@@ -21,6 +21,33 @@ form {
 	text-align: center;
 	padding: 1rem;
 }
+.tomaHome {
+  margin-top: 50px;
+}
+
+.startGame {
+  background-color: #9ff435;
+  border: 0;
+  padding: .3rem .3rem .3rem .3rem;
+  border-radius: 40px;
+  color: #000000;
+  font-size: .6rem;
+  text-transform: uppercase;
+}
+
+input[type=text]  {
+
+  border-color: #9ff435;
+  background-color:  rgb(72,72,72);
+;
+  color: #9ff435;
+
+}
+
+::placeholder { 
+  color: #9ff435;
+}
+
 
 .shodan {
 	min-width: 400px;
@@ -29,7 +56,6 @@ form {
 	max-height: 640px;
 	margin: 0 auto;
 	display: block;
-	/*padding-top: 2rem;*/
 	border: 20px solid #9ff435;
 }
 
