@@ -1,4 +1,4 @@
-let fastMode = false
+let fastMode = true
 // class
 class Tomagotchi {
     constructor(name) {
@@ -22,12 +22,15 @@ const game = {
 
     interval: null,
 
+    isLightsOn: true,
+
 
     spawnTomagotchi: function(name) {
         $(`form`).hide();
         $('.stats').show();
         $('.feed').show();
         $('.sleepTime').show();
+        //$('timeToWakeUp').show();
         $('.playTime').show();
         this.tomagotchiBorn = new Tomagotchi(name);
         $(`.tomaHome`).append(this.tomagotchiBorn);
@@ -55,33 +58,46 @@ const game = {
 
             $('#time').text(this.time);
 
-            console.log("we are in the interval");
-            console.log(this.time);
-
             if (this.time % 60 === 0) {
                 this.tomagotchiBorn.age += 1;
-                this.tomagotchiStats();
                 this.itsMorphingTime();
-            } else if (this.time % 25 === 0) {
+            }
+            if (this.time % 25 === 0) {
                 this.tomagotchiBorn.hunger += 1;
-                this.tomagotchiStats();
-            } else if (this.time % 20 === 0) {
-                this.tomagotchiBorn.sleepiness += 1;
-                this.tomagotchiStats();
-            } else if (this.time % 15 === 0) {
-                this.tomagotchiBorn.boredom += 1;
-                this.tomagotchiStats();
             }
 
-            if (this.tomagotchiBorn.hunger >= 10) {
-                this.isItDead();
-            } else if (this.tomagotchiBorn.sleepiness >= 10) {
-                this.isItDead();
-            } else if (this.tomagotchiBorn.boredom >= 10) {
+
+
+
+            if (this.time % 2 === 0) {
+                if (this.isLightsOn === true) {
+                    this.tomagotchiBorn.sleepiness += 1;
+                } else {
+                    this.tomagotchiBorn.sleepiness -= 1;
+                    if (this.tomagotchiBorn.sleepiness <= -1) {
+                        this.tomagotchiBorn.sleepiness += 1;
+                    }
+                }
+
+
+
+            }
+            if (this.time % 15 === 0) {
+                this.tomagotchiBorn.boredom += 1;
+            }
+            this.tomagotchiStats();
+
+            if (
+                this.tomagotchiBorn.hunger >= 10 ||
+                this.tomagotchiBorn.sleepiness >= 10 ||
+                this.tomagotchiBorn.boredom >= 10
+            ) {
+
                 this.isItDead();
             }
+
             this.time++;
-        }, fastMode ? 100 : 1000); // for testing purposes
+        }, fastMode ? 300 : 1000); // for testing purposes
 
     },
 
@@ -90,8 +106,8 @@ const game = {
         $('.feed').hide();
         $('.sleepTime').hide();
         $('.playTime').hide();
+        $('.timeToWakeUp').hide();
         $('.deadOrAlive').show();
-        // PUT A BIG RED X
         this.tomagotchiBorn.alive = false;
         if (this.tomagotchiBorn.alive === false) {
             $('.shodan').removeClass(`animate`).addClass('shodan-dead');
@@ -99,13 +115,47 @@ const game = {
         clearInterval(this.interval);
 
     },
+
     itsMorphingTime: function() {
         if (this.tomagotchiBorn.age === 1) {
             $('.shodan').attr('src', "img/adultshodan.gif")
         }
-    }
+    },
+
+    feedingTime: function() {
+        this.tomagotchiBorn.hunger -= 1;
+        this.tomagotchiStats();
+
+        if (this.tomagotchiBorn.hunger <= 0) {
+            this.tomagotchiBorn.hunger += 1;
+        }
+    },
+    timeToPlay: function() {
+        this.tomagotchiBorn.boredom -= 1;
+        this.tomagotchiStats();
+        if (this.tomagotchiBorn.boredom <= 0) {
+            this.tomagotchiBorn.boredom += 1;
+        }
+    },
+
+    lightsOff: function() {
+
+        // change lights boolean to make them off
 
 
+        this.isLightsOn = false;
+        $('.sleepTime').hide();
+        $('.timeToWakeUp').show();
+
+    },
+
+
+    lightsOn: function() {
+        // change liughts boole to make them on
+        this.isLightsOn = true;
+        $('.timeToWakeUp').hide();
+        $('.sleepTime').show();
+    },
 
 
 }
@@ -114,30 +164,23 @@ $('form').on('submit', (e) => {
     event.preventDefault();
     const tomaName = $('#input-box').val();
     game.spawnTomagotchi(tomaName);
-
 });
 
 // feed button
 $('.feed').on('click', () => {
-    game.tomagotchiBorn.hunger -= 1;
-    game.tomagotchiStats();
-    if (game.tomagotchiBorn.hunger <= 0) {
-        game.tomagotchiBorn.hunger += 1;
-    }
+    game.feedingTime();
 });
+
 // turn off lights
 $('.sleepTime').on('click', () => {
-    game.tomagotchiBorn.sleepiness -= 1;
-    game.tomagotchiStats();
-    if (game.tomagotchiBorn.sleepiness <= 0) {
-        game.tomagotchiBorn.sleepiness += 1;
-    }
+    game.lightsOff();
 });
+
+$('.timeToWakeUp').on('click', () => {
+    game.lightsOn();
+});
+
 // play with tomagotchi
 $('.playTime').on('click', () => {
-    game.tomagotchiBorn.boredom -= 1;
-    game.tomagotchiStats();
-    if (game.tomagotchiBorn.boredom <= 0) {
-        game.tomagotchiBorn.boredom += 1;
-    }
+    game.timeToPlay();
 });

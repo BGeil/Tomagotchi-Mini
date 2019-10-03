@@ -118,6 +118,9 @@ input[type=text]  {
 .playTime {
 	display: none;
 }
+.timeToWakeUp {
+  display: none;
+}
 
 @keyframes move {
 
